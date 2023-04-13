@@ -8,8 +8,15 @@ parser=BeautifulSoup(baglan,"html.parser")
 kod=parser.find("div",{"class":"list-items-wrapper"}).find_all("div",{"class":"list-items"})
 
 for i in kod:
-  Job_Posting_Name =i.find("a",{"class":"k-ad-card"}).find("div",{"class":"card-top"}).find("div",{"class":"title-left"}).find_all("span",{"class":"k-ad-card-title multiline"}).string
+  try:
+    Job_Posting_Name =i.find("a",{"class":"k-ad-card"}).find("div",{"class":"card-top"}).find("div",{"class":"title-left"}).find("span",{"class":"k-ad-card-title multiline"}).text
+    print("Job Posting Name: ", Job_Posting_Name)
+    
+  # eger hata verirse, o veri cekmiyoruz ve devam ediyoruz.
+  except AttributeError:
+    continue
+    
 for i in kod:
-  Job_Advertisement=i.find("div",{"class":"title-wrapper"}).find("div",{"class":"title-icon"}).find("div",{"class":"subtitle"})
+  Job_Advertisement=i.find("div",{"class":"title-wrapper"}).text
+  print("job Advertisement: ", Job_Advertisement)
   
-  print(Job_Posting_Name)
