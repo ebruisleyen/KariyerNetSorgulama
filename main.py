@@ -18,23 +18,28 @@ for i in kod:
   
     job_post = {"title": title,"city":city,"workplace":workplace,"link":link,"sms":False}
     veriler.append(job_post)
+
     
     
   # eger hata verirse, o veri cekmiyoruz ve devam ediyoruz.
   except AttributeError:
     continue
 
-with open("data.json", "a",encoding="utf-8") as outfile:
-    json.dump(veriler, outfile,indent=2,ensure_ascii=False)
 
-infile =open("data.json","r")
-data=infile.readlines()
-print(data)
 while True:
+   with open("data.json", "a",encoding="utf-8") as outfile:
+    json.dump(veriler, outfile,indent=2,ensure_ascii=False)
+    
+
+   infile =open("data.json","r")
+
+   data=infile.readlines()
+  
    for i in data:
-      if i not in veriler:
-         veriler.append(i)
-      else:
-         break
+      if  i not in veriler:
+       veriler.append(i)
+       
+   else:
+     break
          
   
